@@ -16,8 +16,8 @@ export default function ChatWidget({
   customerId = 'demo',
   language = 'auto',
   primaryColor = '#6366f1',
-  botName = 'さくら苑',
-  greetingMessage = 'こんにちは！何でもお気軽にご相談ください。😊'
+  botName = 'Care Bot',
+  greetingMessage = 'Hello! How can I help you today?'
 }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
@@ -39,11 +39,11 @@ export default function ChatWidget({
 
     const userMessage = inputValue
     setInputValue('')
-
+    
     const newMessages = [...messages, { role: 'user' as const, content: userMessage }]
     setMessages(newMessages)
     setIsTyping(true)
-
+    
     try {
       const conversationHistory = newMessages.map(msg => ({
         role: msg.role,
@@ -67,11 +67,11 @@ export default function ChatWidget({
         setMessages(prev => [...prev, { role: 'assistant', content: data.reply }])
         setDetectedLanguage(data.language)
       } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: 'エラーが発生しました。' }])
+        setMessages(prev => [...prev, { role: 'assistant', content: 'Error occurred.' }])
       }
     } catch (error) {
       console.error('Error:', error)
-      setMessages(prev => [...prev, { role: 'assistant', content: '接続エラーが発生しました。' }])
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error.' }])
     } finally {
       setIsTyping(false)
     }
@@ -95,9 +95,21 @@ export default function ChatWidget({
 
   const getLanguageText = () => {
     const texts = {
-      ja: { placeholder: 'メッセージを入力してください...', send: '送信', guidance: 'ご質問がある方はこちら ↓' },
-      en: { placeholder: 'Type your message...', send: 'Send', guidance: 'Questions? Click here ↓' },
-      zh: { placeholder: '请输入您的消息...', send: '发送', guidance: '有问题请点击这里 ↓' }
+      ja: { 
+        placeholder: 'Type your message...', 
+        guidance: 'Questions? Click here',
+        status: 'AI Assistant Online'
+      },
+      en: { 
+        placeholder: 'Type your message...', 
+        guidance: 'Questions? Click here',
+        status: 'AI Assistant Online'
+      },
+      zh: { 
+        placeholder: 'Type your message...', 
+        guidance: 'Questions? Click here',
+        status: 'AI Assistant Online'
+      }
     }
     return texts[detectedLanguage as keyof typeof texts] || texts.ja
   }
@@ -106,16 +118,12 @@ export default function ChatWidget({
 
   return (
     <>
-      {/* チャットボタン */}
       {!isOpen && (
         <>
-          {/* 吹き出し案内 */}
-          <div
-            className="fixed bottom-28 right-10 bg-white text-gray-700 px-4 py-3 rounded-2xl shadow-lg text-sm font-medium z-[999] border animate-bounce"
-          >
+          <div className="fixed bottom-28 right-10 bg-white text-gray-700 px-4 py-3 rounded-2xl shadow-lg text-sm font-medium z-[999] border animate-bounce">
             {text.guidance}
           </div>
-
+          
           <button
             onClick={startChat}
             className="fixed bottom-8 right-8 w-16 h-16 rounded-full text-white text-2xl shadow-lg hover:scale-110 transition-all z-[1000]"
@@ -126,10 +134,8 @@ export default function ChatWidget({
         </>
       )}
 
-      {/* チャットウィンドウ */}
       {isOpen && (
         <div className="fixed bottom-8 right-8 w-80 h-[600px] bg-black rounded-[30px] shadow-2xl flex flex-col overflow-hidden z-[1000] border-8 border-black">
-          {/* ヘッダー */}
           <div
             className="text-white p-6 flex items-center justify-between"
             style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, ${primaryColor}dd 100%)` }}
@@ -140,10 +146,10 @@ export default function ChatWidget({
               </div>
               <div>
                 <div className="font-bold text-lg">{botName}</div>
-                <div className="text-sm opacity-90">相談AI オンライン</div>
+                <div className="text-sm opacity-90">{text.status}</div>
               </div>
             </div>
-            <button
+            <button 
               onClick={() => setIsOpen(false)}
               className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
             >
@@ -151,7 +157,6 @@ export default function ChatWidget({
             </button>
           </div>
 
-          {/* メッセージエリア */}
           <div className="flex-1 p-6 overflow-y-auto bg-gray-50 space-y-4">
             {messages.map((message, index) => (
               <div
@@ -159,14 +164,15 @@ export default function ChatWidget({
                 className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
                 <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg flex-shrink-0"
-                  style={{ backgroundColor: message.role === 'user' ? '#e5e7eb' : '#e0e7ff' }}>
+                     style={{ backgroundColor: message.role === 'user' ? '#e5e7eb' : '#e0e7ff' }}>
                   {message.role === 'user' ? '👤' : '👩‍⚕️'}
                 </div>
                 <div
-                  className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed ${message.role === 'user'
+                  className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed ${
+                    message.role === 'user'
                       ? 'text-white shadow-none'
                       : 'bg-white text-gray-800 shadow-sm'
-                    }`}
+                  }`}
                   style={{
                     backgroundColor: message.role === 'user' ? primaryColor : undefined,
                     borderRadius: message.role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px'
@@ -176,7 +182,7 @@ export default function ChatWidget({
                 </div>
               </div>
             ))}
-
+            
             {isTyping && (
               <div className="flex gap-3">
                 <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center text-lg flex-shrink-0">
@@ -185,8 +191,8 @@ export default function ChatWidget({
                 <div className="bg-white p-4 rounded-2xl shadow-sm">
                   <div className="flex gap-1">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                   </div>
                 </div>
               </div>
@@ -194,7 +200,6 @@ export default function ChatWidget({
             <div ref={messagesEndRef} />
           </div>
 
-          {/* 入力エリア */}
           <div className="p-5 bg-white border-t">
             <div className="flex gap-3">
               <input
