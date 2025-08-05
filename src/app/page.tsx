@@ -13,27 +13,27 @@ export default function Home() {
         
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">🇯🇵 Japanese Test</h2>
-            <p className="text-gray-600">Try: I need help with elderly care</p>
+            <h2 className="text-xl font-semibold mb-4">Japanese Test</h2>
+            <p className="text-gray-600">Try typing in Japanese</p>
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">🇺🇸 English Test</h2>
+            <h2 className="text-xl font-semibold mb-4">English Test</h2>
             <p className="text-gray-600">Type: I need help with elderly care</p>
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">🇨🇳 Chinese Test</h2>
-            <p className="text-gray-600">Type: I need help with elderly care</p>
+            <h2 className="text-xl font-semibold mb-4">Chinese Test</h2>
+            <p className="text-gray-600">Try typing in Chinese</p>
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">⚡ Features</h2>
+            <h2 className="text-xl font-semibold mb-4">Features</h2>
             <ul className="text-gray-600 space-y-2">
-              <li>• Auto language detection</li>
-              <li>• GPT-4 powered sales AI</li>
-              <li>• Industry-specific prompts</li>
-              <li>• Embeddable widget</li>
+              <li>Auto language detection</li>
+              <li>GPT-4 powered sales AI</li>
+              <li>Industry-specific prompts</li>
+              <li>Embeddable widget</li>
             </ul>
           </div>
         </div>
