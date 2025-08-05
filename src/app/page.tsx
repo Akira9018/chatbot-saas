@@ -5,35 +5,35 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
       <div className="max-w-4xl mx-auto p-8">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          AI Chatbot Demo
+          営業AIチャットボット デモ
         </h1>
         <p className="text-gray-600 text-lg mb-8">
-          Click the chat button in the bottom right to experience our multilingual sales AI
+          右下のチャットボタンをクリックして、多言語対応営業AIを体験してください
         </p>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Japanese Test</h2>
-            <p className="text-gray-600">Try typing in Japanese</p>
+            <h2 className="text-xl font-semibold mb-4">🇯🇵 日本語テスト</h2>
+            <p className="text-gray-600">「母の介護で困っています」と入力してみてください</p>
           </div>
-          
+
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">English Test</h2>
-            <p className="text-gray-600">Type: I need help with elderly care</p>
+            <h2 className="text-xl font-semibold mb-4">🇺🇸 English Test</h2>
+            <p className="text-gray-600">Type: "I need help with elderly care"</p>
           </div>
-          
+
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Chinese Test</h2>
-            <p className="text-gray-600">Try typing in Chinese</p>
+            <h2 className="text-xl font-semibold mb-4">🇨🇳 中文测试</h2>
+            <p className="text-gray-600">输入「我需要养老院的帮助」</p>
           </div>
-          
+
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-4">Features</h2>
+            <h2 className="text-xl font-semibold mb-4">⚡ 特徴</h2>
             <ul className="text-gray-600 space-y-2">
-              <li>Auto language detection</li>
-              <li>GPT-4 powered sales AI</li>
-              <li>Industry-specific prompts</li>
-              <li>Embeddable widget</li>
+              <li>• 自動言語検出</li>
+              <li>• GPT-4搭載営業AI</li>
+              <li>• 業界特化プロンプト</li>
+              <li>• 埋め込み対応</li>
             </ul>
           </div>
         </div>
@@ -43,8 +43,8 @@ export default function Home() {
         customerId="demo"
         language="auto"
         primaryColor="#6366f1"
-        botName="Care Bot"
-        greetingMessage="Hello! How can I help you with care services today?"
+        botName="さくら苑"
+        greetingMessage="こんにちは！介護のことでお困りではありませんか？😊"
       />
     </div>
   )

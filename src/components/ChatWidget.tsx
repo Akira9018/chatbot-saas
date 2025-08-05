@@ -16,8 +16,8 @@ export default function ChatWidget({
   customerId = 'demo',
   language = 'auto',
   primaryColor = '#6366f1',
-  botName = 'Care Bot',
-  greetingMessage = 'Hello! How can I help you today?'
+  botName = 'さくら苑',
+  greetingMessage = 'こんにちは！介護のことでお困りではありませんか？😊'
 }: ChatWidgetProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
@@ -67,11 +67,11 @@ export default function ChatWidget({
         setMessages(prev => [...prev, { role: 'assistant', content: data.reply }])
         setDetectedLanguage(data.language)
       } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: 'Error occurred.' }])
+        setMessages(prev => [...prev, { role: 'assistant', content: 'エラーが発生しました。' }])
       }
     } catch (error) {
       console.error('Error:', error)
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error.' }])
+      setMessages(prev => [...prev, { role: 'assistant', content: '接続エラーが発生しました。' }])
     } finally {
       setIsTyping(false)
     }
@@ -96,19 +96,19 @@ export default function ChatWidget({
   const getLanguageText = () => {
     const texts = {
       ja: { 
-        placeholder: 'Type your message...', 
-        guidance: 'Questions? Click here',
-        status: 'AI Assistant Online'
+        placeholder: 'メッセージを入力してください...', 
+        guidance: 'ご質問がある方はこちら ↓',
+        status: '相談AI・オンライン'
       },
       en: { 
         placeholder: 'Type your message...', 
-        guidance: 'Questions? Click here',
+        guidance: 'Questions? Click here ↓',
         status: 'AI Assistant Online'
       },
       zh: { 
-        placeholder: 'Type your message...', 
-        guidance: 'Questions? Click here',
-        status: 'AI Assistant Online'
+        placeholder: '请输入您的消息...', 
+        guidance: '有问题请点击这里 ↓',
+        status: 'AI助手在线'
       }
     }
     return texts[detectedLanguage as keyof typeof texts] || texts.ja
@@ -142,7 +142,7 @@ export default function ChatWidget({
           >
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl">
-                ★
+                🌸
               </div>
               <div>
                 <div className="font-bold text-lg">{botName}</div>
@@ -165,7 +165,7 @@ export default function ChatWidget({
               >
                 <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg flex-shrink-0"
                      style={{ backgroundColor: message.role === 'user' ? '#e5e7eb' : '#e0e7ff' }}>
-                  {message.role === 'user' ? 'U' : 'A'}
+                  {message.role === 'user' ? '👤' : '👩‍⚕️'}
                 </div>
                 <div
                   className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed ${
@@ -186,7 +186,7 @@ export default function ChatWidget({
             {isTyping && (
               <div className="flex gap-3">
                 <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center text-lg flex-shrink-0">
-                  A
+                  👩‍⚕️
                 </div>
                 <div className="bg-white p-4 rounded-2xl shadow-sm">
                   <div className="flex gap-1">
