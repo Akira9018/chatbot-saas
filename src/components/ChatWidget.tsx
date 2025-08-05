@@ -39,11 +39,11 @@ export default function ChatWidget({
 
     const userMessage = inputValue
     setInputValue('')
-    
+
     const newMessages = [...messages, { role: 'user' as const, content: userMessage }]
     setMessages(newMessages)
     setIsTyping(true)
-    
+
     try {
       const conversationHistory = newMessages.map(msg => ({
         role: msg.role,
@@ -115,7 +115,7 @@ export default function ChatWidget({
           >
             {text.guidance}
           </div>
-          
+
           <button
             onClick={startChat}
             className="fixed bottom-8 right-8 w-16 h-16 rounded-full text-white text-2xl shadow-lg hover:scale-110 transition-all z-[1000]"
@@ -140,10 +140,10 @@ export default function ChatWidget({
               </div>
               <div>
                 <div className="font-bold text-lg">{botName}</div>
-                <div className="text-sm opacity-90">相談AI・オンライン</div>
+                <div className="text-sm opacity-90">相談AI オンライン</div>
               </div>
             </div>
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
               className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
             >
@@ -159,15 +159,14 @@ export default function ChatWidget({
                 className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
                 <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg flex-shrink-0"
-                     style={{ backgroundColor: message.role === 'user' ? '#e5e7eb' : '#e0e7ff' }}>
+                  style={{ backgroundColor: message.role === 'user' ? '#e5e7eb' : '#e0e7ff' }}>
                   {message.role === 'user' ? '👤' : '👩‍⚕️'}
                 </div>
                 <div
-                  className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed ${
-                    message.role === 'user'
+                  className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed ${message.role === 'user'
                       ? 'text-white shadow-none'
                       : 'bg-white text-gray-800 shadow-sm'
-                  }`}
+                    }`}
                   style={{
                     backgroundColor: message.role === 'user' ? primaryColor : undefined,
                     borderRadius: message.role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px'
@@ -177,7 +176,7 @@ export default function ChatWidget({
                 </div>
               </div>
             ))}
-            
+
             {isTyping && (
               <div className="flex gap-3">
                 <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center text-lg flex-shrink-0">
@@ -186,8 +185,8 @@ export default function ChatWidget({
                 <div className="bg-white p-4 rounded-2xl shadow-sm">
                   <div className="flex gap-1">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                 </div>
               </div>
