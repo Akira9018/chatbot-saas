@@ -142,7 +142,7 @@ export default function ChatWidget({
           >
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-2xl">
-                🌸
+                ★
               </div>
               <div>
                 <div className="font-bold text-lg">{botName}</div>
@@ -165,7 +165,7 @@ export default function ChatWidget({
               >
                 <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg flex-shrink-0"
                      style={{ backgroundColor: message.role === 'user' ? '#e5e7eb' : '#e0e7ff' }}>
-                  {message.role === 'user' ? '👤' : '👩‍⚕️'}
+                  {message.role === 'user' ? 'U' : 'A'}
                 </div>
                 <div
                   className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed ${
@@ -186,7 +186,7 @@ export default function ChatWidget({
             {isTyping && (
               <div className="flex gap-3">
                 <div className="w-9 h-9 bg-blue-100 rounded-full flex items-center justify-center text-lg flex-shrink-0">
-                  👩‍⚕️
+                  A
                 </div>
                 <div className="bg-white p-4 rounded-2xl shadow-sm">
                   <div className="flex gap-1">
